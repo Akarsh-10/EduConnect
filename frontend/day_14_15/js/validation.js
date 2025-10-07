@@ -11,24 +11,44 @@ function login() {
 }
 
 function register() {
-   
-
-    // Frontend validation for registration form
     const name=document.getElementById("registerName").value;
     const username=document.getElementById("registerUsername").value;
     const password=document.getElementById("registerPassword").value;
     const email=document.getElementById("registerEmail").value;
-    console.log(`Register clicked. Name: ${name}, Email: ${email}, Username: ${username}, Password: ${password}`)
-
     
-    
+    // Frontend validation for registration form
+    if(name=== "" || email==="" || username === "" || password === "")
+    {
+        alert("All fields are mandatory.");
+        return;
+    }
 
     // Validate email format
+    var emailCheck= /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!emailCheck.test(email))
+    {
+        alert("Please enter a valid email address.");
+        return;
+    }
     
     // Validate username (no special characters)
-    
+    var userCheck= /^[a-zA-Z0-9]+$/;
+    if(!userCheck.test(username))
+    {
+        alert("Username should not contain any special characters.");
+        return;
+    }
 
     // Validate password (at least 8 characters, one capital letter, and one numeric)
+    var passwordCheck= /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+    if(!passwordCheck.test(password))
+    {
+        alert("Password does not follow the guidelines");
+        return;
+    }
+
+
+    console.log(`Register clicked. Name: ${name}, Email: ${email}, Username: ${username}, Password: ${password}`)
     
 }
 module.exports = { login, register };
