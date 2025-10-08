@@ -4,9 +4,11 @@ import { CommonModule } from "@angular/common";
 import { EduConnectRoutingModule } from "./educonnect-routing.module";
 import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
-
+// import { StudentSampleComponent } from "./components/studentsample/studentsample.component";
 @NgModule({
-  declarations: [],
+  declarations: [
+  // StudentSampleComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
