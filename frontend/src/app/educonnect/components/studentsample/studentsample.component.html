@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form>
+    <!-- <form>
         <label>Enter your name</label>
         <input type="text" id="s_name">
         <label>Enter your Date of Birth</label>
@@ -20,6 +20,27 @@
 
         <button id="s_btnsubmit" onclick="onSubmit()">Submit</button>
         <button id="s_btnreset" onclick="resetForm()">Reset</button>
-    </form>
+    </form> -->
+    <h2>Student Details</h2>
+    
+    <label>Student ID:</label>
+    <p>{{student.studentId}} </p>
+
+    <label>Full Name:</label>
+    <p>{{student.fullName}} </p>
+
+    <label>Date of Birth:</label>
+    <p>{{student.dateOfBirth}} </p>
+
+    <label>Contact Number:</label>
+    <p>{{student.contactNumber}} </p>
+
+    <label>Email:</label>
+    <p>{{student.email}} </p>
+
+    <label>Address:</label>
+    <p>{{student.address}} </p>
+    
+  <button type="button" (click)="logStudentAttributes()">Submit</button>
 </body>
 </html>

@@ -1,3 +1,4 @@
+
 export class Student {
     studentId: number;
     fullName: string;
