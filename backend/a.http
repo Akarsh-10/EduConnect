@@ -1,0 +1,174 @@
+# ### STUDENT CONTROLLER
+# GET http://localhost:5000/api/students
+# Content-Type: application/json
+
+# ###
+
+# GET http://localhost:5000/api/students/1
+# Content-Type: application/json
+
+# ###
+
+# POST http://localhost:5000/students
+# Authorization: john_doe password123
+# Content-Type: application/json
+
+# {
+#   "fullName": "John Doe",
+#   "dateOfBirth": "2000-05-15",
+#   "contactNumber": "9876543210",
+#   "email": "johndoe@example.com",
+#   "address": "Odi"
+# }
+
+# ###
+
+# PUT http://localhost:5000/api/students/1
+# Content-Type: application/json
+
+# {
+#   "name": "Johnny Doe",
+#   "age": 21
+# }
+
+# ###
+
+# DELETE http://localhost:5000/api/students/1
+# Content-Type: application/json
+
+
+
+# ### TEACHER CONTROLLER
+# GET http://localhost:5000/api/teachers
+# Content-Type: application/json
+
+# ###
+
+# GET http://localhost:5000/api/teachers/1
+# Content-Type: application/json
+
+# ###
+
+# POST http://localhost:5000/api/teachers
+# Content-Type: application/json
+
+# {
+#   "name": "Jane Smith",
+#   "subject": "Mathematics",
+#   "email": "janesmith@example.com"
+# }
+
+# ###
+
+# PUT http://localhost:5000/api/teachers/1
+# Content-Type: application/json
+
+# {
+#   "subject": "Physics"
+# }
+
+# ###
+
+# DELETE http://localhost:5000/api/teachers/1
+# Content-Type: application/json
+
+
+
+# ### COURSE CONTROLLER
+# GET http://localhost:5000/api/courses
+# Content-Type: application/json
+
+# ###
+
+# GET http://localhost:5000/api/courses/1
+# Content-Type: application/json
+
+# ###
+
+# POST http://localhost:5000/api/courses
+# Content-Type: application/json
+
+# {
+#   "title": "Introduction to Programming",
+#   "description": "Basic programming concepts using JavaScript",
+#   "credits": 3
+# }
+
+# ###
+
+# PUT http://localhost:5000/api/courses/1
+# Content-Type: application/json
+
+# {
+#   "credits": 4
+# }
+
+# ###
+
+# DELETE http://localhost:5000/api/courses/1
+# Content-Type: application/json
+
+
+
+# ### ENROLLMENT CONTROLLER
+# GET http://localhost:5000/api/enrollments
+# Content-Type: application/json
+
+# ###
+
+# GET http://localhost:5000/api/enrollments/1
+# Content-Type: application/json
+
+# ###
+
+# POST http://localhost:5000/api/enrollments
+# Content-Type: application/json
+
+# {
+#   "studentId": 1,
+#   "courseId": 2,
+#   "semester": "Fall 2025"
+# }
+
+# ###
+
+# PUT http://localhost:5000/api/enrollments/1
+# Content-Type: application/json
+
+# {
+#   "semester": "Spring 2026"
+# }
+
+# ###
+
+# DELETE http://localhost:5000/api/enrollments/1
+# Content-Type: application/json
+
+
+
+### AUTH CONTROLLER
+POST http://localhost:5000/user/register
+Content-Type: application/json
+
+{
+  "username": "john_doe",
+  "password": "password123",
+  "role": "STUDENT",
+  "fullName": "John Doe",
+  "contactNumber": "9876543201",
+  "email": "john@email.com",
+  "address": "Odi",
+  "dateOfBirth": "2000-05-05",
+  "subject": "Maths",
+  "yearsOfExperience": 10
+  
+  
+}
+
+###
+
+# ###
+
+# GET http://localhost:5000/api/user/profile
+# Authorization: Bearer <your_jwt_token_here>
+# Content-Type: application/json

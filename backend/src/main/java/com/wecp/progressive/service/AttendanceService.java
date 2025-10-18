@@ -4,15 +4,16 @@ import com.wecp.progressive.entity.Attendance;
 
 import java.util.List;
 
+
 public interface AttendanceService {
 
-    List<Attendance> getAllAttendance();
+    public List<Attendance> getAllAttendance();
 
-    Attendance createAttendance(Attendance attendance);
+    public Attendance createAttendance(Attendance attendance);
 
-    void deleteAttendance(int attendanceId);
+    public void deleteAttendance(int attendanceId);
 
-    List<Attendance> getAttendanceByStudent(int studentId);
+    public List<Attendance> getAttendanceByStudent(int studentId);
 
-    List<Attendance> getAttendanceByCourse(int courseId);
+    public List<Attendance> getAttendanceByCourse(int courseId);
 }

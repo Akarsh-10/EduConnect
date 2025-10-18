@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <form>
+        <label>Enter your name</label>
+        <input type="text" id="s_name">
+        <label>Enter your Date of Birth</label>
+        <input type="text" id="s_dob">
+        <label>Enter your contact number</label>
+        <input type="text" id="s_number">
+        <label>Enter your email</label>
+        <input type="text" id="s_email">
+        <label>Enter your address</label>
+        <input type="text" id="s_address">
+
+        <button id="s_btnsubmit" onclick="onSubmit()">Submit</button>
+        <button id="s_btnreset" onclick="resetForm()">Reset</button>
+    </form> -->
+    <h2>Student Details</h2>
+    
+    <label>Student ID:</label>
+    <p>{{student.studentId}} </p>
+
+    <label>Full Name:</label>
+    <p>{{student.fullName}} </p>
+
+    <label>Date of Birth:</label>
+    <p>{{student.dateOfBirth}} </p>
+
+    <label>Contact Number:</label>
+    <p>{{student.contactNumber}} </p>
+
+    <label>Email:</label>
+    <p>{{student.email}} </p>
+
+    <label>Address:</label>
+    <p>{{student.address}} </p>
+    
+  <button type="button" (click)="logStudentAttributes()">Submit</button>
+</body>
+</html>
