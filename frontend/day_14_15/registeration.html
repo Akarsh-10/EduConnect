@@ -11,3 +11,23 @@ registerUsername: it will not contain any special characters
 registerEmail: it will be a valid email
 registerPassword: it will be of atleast 8 characters 
 -->
+<html></html>
+    <head>
+        <title>EduConnect</title>
+    </head>
+    <body>
+        <form id="loginform">
+            <label id="label_name">Enter your name</label>
+            <input id="registerName" type="text" placeholder="Name">
+            <label id="label_email">Enter your email</label>
+            <input id="registerEmail" type="text" placeholder="Email">
+
+            <label id="label_id">Enter your username</label>
+            <input id="registerUsername" type="text" placeholder="Username">
+            <label id="label_pass">Enter your password</label>
+            <input id="registerPassword" type="text" placeholder="Password">
+            <button id="btnlogin" onclick="register()"></button>            
+        </form>
+        <script src="./js/validation.js"></script>
+    </body>
+</html>

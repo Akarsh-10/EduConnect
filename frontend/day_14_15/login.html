@@ -8,3 +8,22 @@
     -loginPassword: should not be empty
 
 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="loginform">
+        <label id="label_id">Enter your username</label>
+        <input id="loginUsername" type="text" placeholder="Username" required>
+        <label id="label_pass">Enter your password</label>
+        <input id="loginPassword" type="text" placeholder="Password" required>
+
+        <button id="btnlogin" onclick="login()"></button>            
+    </form>
+    <script src="./js/validation.js"></script>
+</body>
+</html>

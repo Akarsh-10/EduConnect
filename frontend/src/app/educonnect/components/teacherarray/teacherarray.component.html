@@ -1,0 +1,21 @@
+<div *ngIf="teachers.length===0">
+    No teachers available
+</div>
+
+<button (click)="toggleDetails()"></button>
+<div *ngIf="showDetails">
+    <div *ngFor="let teacher of teachers" class="teacher-card">
+
+    <h2>Teacher Details</h2>
+    
+    <p>Teacher ID: {{teacher.teacherId}} </p>
+
+    <p>Full Name: {{teacher.fullName}} </p>
+
+    <p>Subject: {{teacher.subject}} </p>
+
+    <p>Email: {{teacher.email}} </p>
+
+    <p>Years of Experience: {{teacher.yearsOfExperience}} </p>
+    </div>
+</div>
