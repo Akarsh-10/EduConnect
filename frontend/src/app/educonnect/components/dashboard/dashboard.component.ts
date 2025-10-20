@@ -150,7 +150,9 @@ export class DashboardComponent implements OnInit {
         if (confirm('Are you sure you want to delete your course profile?')) {
             this.educonnectService.deleteCourse(courseId).subscribe({
                 next: () => {
-                    this.router.navigate(['/']);
+                    // this.router.navigate(['/']);
+                    window.location.reload();
+                    
                 },
                 error: (error) => console.error('Error deleting course:', error)
 

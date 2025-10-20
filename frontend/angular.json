@@ -68,10 +68,6 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "port": 3000,
-            "disableHostCheck": true
-          },
           "configurations": {
             "production": {
               "browserTarget": "educonnect:build:production"

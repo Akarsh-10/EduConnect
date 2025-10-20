@@ -1,40 +1,40 @@
 package com.wecp.progressive.entity;
 
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import org.hibernate.annotations.CreationTimestamp;
-
 @Entity
+@Table(name = "attendance", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"course_id", "student_id", "attendance_date"})
+})
 public class Attendance {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "attendance_id")
     private int attendanceId;
 
     @ManyToOne
-    @JoinColumn(name = "course_Id")
+    @JoinColumn(name = "course_id", nullable = false)
     private Course course;
 
     @ManyToOne
-    @JoinColumn(name = "student_Id")
+    @JoinColumn(name = "student_id", nullable = false)
     private Student student;
 
+    @Column(name = "attendance_date", nullable = false)
     private Date attendanceDate;
 
+    @Column(name = "status", nullable = false)
     private String status;
 
-    @CreationTimestamp
-    @Column(updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Date createdAt;
 
     public Attendance() {
+        this.createdAt = new Date();
     }
 
     public Attendance(Course course, Student student, Date attendanceDate, String status) {
@@ -42,6 +42,7 @@ public class Attendance {
         this.student = student;
         this.attendanceDate = attendanceDate;
         this.status = status;
+        this.createdAt = new Date();
     }
 
     public int getAttendanceId() {
@@ -87,9 +88,4 @@ public class Attendance {
     public Date getCreatedAt() {
         return createdAt;
     }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
 }

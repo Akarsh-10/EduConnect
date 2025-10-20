@@ -1,16 +1,51 @@
-<form [formGroup]="enrollmentForm" (ngSubmit)="onSubmit()">
-    <label>Student ID:</label>
-    <input type="number" formControlName="studentId"/>
+<div class="form-container">
+    <h2>Create Enrollments</h2>
+    <form [formGroup]="enrollmentForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="course">Course:</label>
+            <select formControlName="course">
+                <option value="">Select a Course</option>
+                <option *ngFor="let course of courses" [ngValue]="course">
+                    {{ course.courseName }}
+                </option>
+            </select>
+        </div>
 
-    <label>Course ID:</label>
-    <input type="number" formControlName="courseId"/>
+        <div *ngIf="role === 'TEACHER'" class="form-group">
+            <label for="student">Student:</label>
+            <select formControlName="student">
+                <option value="">Select a Student</option>
+                <option *ngFor="let student of students" [ngValue]="student">
+                    {{ student.fullName }}
+                </option>
+            </select>
+        </div>
 
-    <label>Enrollment Date:</label>
-    <input type="date" formControlName="enrollmentDate"/>
+        <div *ngIf="role === 'STUDENT'" class="form-group">
+            <div class="form-group">
+                <label for="student">Student Name:</label>
+                <input type="text" id="student" formControlName="student" [readonly]="true" class="readonly-input" />
+            </div>
+        </div>
 
-    <button type="submit">Submit</button>
-    <button type="button" (click)="resetForm()">Reset</button>
+        <div class="form-group">
+            <label for="enrollmentDate">Enrollment Date:</label>
+            <input type="date" id="enrollmentDate" formControlName="enrollmentDate" />
+            <div *ngIf="enrollmentForm.get('enrollmentDate')?.invalid && enrollmentForm.get('enrollmentDate')?.touched"
+                class="error">
+                Enrollment Date is required.
+            </div>
+        </div>
 
-    <p *ngIf="successMessage" class="success-message">{{successMessage}}</p>
-    <p *ngIf="errorMessage" class="error-message">{{errorMessage}}</p>
-</form>
+        <div class="form-actions">
+            <button type="submit" [disabled]="enrollmentForm.invalid">Add Enrollment</button>
+        </div>
+        <div class="form-footer">
+            <a routerLink="/educonnect" class="link">Dashboard</a>
+        </div>
+    </form>
+
+
+    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+</div>

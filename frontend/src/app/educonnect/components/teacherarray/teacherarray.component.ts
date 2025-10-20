@@ -1,27 +1,23 @@
-import { Component } from "@angular/core";
-import { Teacher } from "../../models/Teacher";
+import { Component } from '@angular/core';
+import { Teacher } from '../../models/Teacher';
 
 @Component({
-    selector:'teacher-array',
+    selector: 'app-teacherarray',
     templateUrl: './teacherarray.component.html',
     styleUrls: ['./teacherarray.component.scss']
 })
+export class TeacherArrayComponent {
+    showDetails: boolean = false;
 
-export class TeacherArrayComponent  {
-    teachers: Teacher[]=[new Teacher(10,"Dough","98765432","werwer@try.com","English",20),
-        new Teacher(11,"Dough","98765432","werwer@try.com","English",20),
-        new Teacher(12,"Dough","98765432","werwer@try.com","English",20)
+    teachers: Teacher[] = [
+        new Teacher(1, 'Jane Smith', '9876543210', 'jane.smith@example.com', 'Mathematics', 10),
+        new Teacher(2, 'John Doe', '1234567890', 'john.doe@example.com', 'Science', 8),
+        new Teacher(3, 'Alice Johnson', '4567891230', 'alice.johnson@example.com', 'History', 12),
     ];
-    showDetails: boolean=true;
-    constructor()
-    {
 
+    constructor() { }
+
+    toggleDetails(): void {
+        this.showDetails = !this.showDetails;
     }
-
-    toggleDetails()
-    {
-        this.showDetails=!this.showDetails;
-    }
- 
-
 }

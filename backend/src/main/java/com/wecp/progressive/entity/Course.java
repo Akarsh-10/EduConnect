@@ -1,54 +1,33 @@
 package com.wecp.progressive.entity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name="course")
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="course_Id")
-    private Integer courseId;
+    private int courseId;
     private String courseName;
     private String description;
-    private Integer teachId;
-
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
     public Course() {
     }
-    
-    public Course(Integer courseId, String courseName, String description , Integer teacherId) {
+
+    public Course(int courseId, String courseName, String description, int teacherId) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.description = description;
-        this.teachId=teacherId;
-    }
-    
-
-    public Course(Integer courseId, String courseName, String description, Teacher teacher) {
-        this.courseId = courseId;
-        this.courseName = courseName;
-        this.description = description;
-        this.teacher = teacher;
+        this.teacher.setTeacherId(teacherId);
     }
 
-
-    public Integer getCourseId() {
+    public int getCourseId() {
         return courseId;
     }
 
-    public void setCourseId(Integer courseId) {
+    public void setCourseId(int courseId) {
         this.courseId = courseId;
     }
 
@@ -68,23 +47,11 @@ public class Course {
         this.description = description;
     }
 
-
     public Teacher getTeacher() {
         return teacher;
     }
 
-
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
-
-    public Integer getTeacherId() {
-        return teachId;
-    }
-
-    public void setTeacherId(Integer teacherId) {
-        this.teachId = teacherId;
-    }
-
-    
 }

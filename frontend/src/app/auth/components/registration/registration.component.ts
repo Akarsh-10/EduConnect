@@ -14,7 +14,7 @@ export class RegistrationComponent {
     errorMessage: string | null = null;
     selectedRole: string | null = null;
 
-    constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
+    constructor(private formBuilder: FormBuilder, private authService: AuthService) {}
 
     ngOnInit(): void {
         this.registrationForm = this.formBuilder.group({
@@ -22,11 +22,11 @@ export class RegistrationComponent {
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[A-Z])(?=.*\d).+$/)]],
             role: ['', [Validators.required]],
-            fullName: ['', Validators.required],
-            contactNumber: ['', Validators.required],
+            fullName: ['', [Validators.required]],
+            contactNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
             subject: [''],
             yearsOfExperience: [null],
-            dateOfBirth: [null], 
+            dateOfBirth: [null],
             address: [''],
         });
     }

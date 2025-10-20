@@ -47,6 +47,6 @@ export class AuthService {
   }
 
   createUser(user: UserRegistrationDTO): Observable<any> {
-    return this.http.post<UserRegistrationDTO>(`${this.loginUrl}/user/register`, user, this.httpOptions);
+    return this.http.post<UserRegistrationDTO>(`${this.loginUrl}/user/register`, user);
   }
 }

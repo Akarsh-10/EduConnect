@@ -44,6 +44,8 @@
             <div *ngIf="registrationForm.get('fullName')?.invalid && registrationForm.get('fullName')?.touched"
                 class="error">
                 <small *ngIf="registrationForm.get('fullName')?.hasError('required')">Full Name is required.</small>
+                <small *ngIf="registrationForm.get('fullName')?.hasError('pattern')">Full Name should contain only letters and spaces.</small>
+                
             </div>
         </div>
 

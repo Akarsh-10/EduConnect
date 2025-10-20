@@ -2,6 +2,7 @@ package com.wecp.progressive.service;
 
 import com.wecp.progressive.entity.Course;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface CourseService {
@@ -16,6 +17,5 @@ public interface CourseService {
 
     public void deleteCourse(int courseId) throws Exception;
 
-    //Do not implement these methods in CourseServiceImplJdbc.java class
     default public List<Course> getAllCourseByTeacherId(int teacherId) { return null; }
 }

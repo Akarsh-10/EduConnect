@@ -1,87 +1,62 @@
 package com.wecp.progressive.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.wecp.progressive.dao.CourseDAO;
 import com.wecp.progressive.entity.Course;
 import com.wecp.progressive.service.CourseService;
 
+import java.sql.SQLException;
+import java.util.List;
+
 public class CourseServiceImplJdbc implements CourseService {
 
     private CourseDAO courseDAO;
-    
+
     public CourseServiceImplJdbc(CourseDAO courseDAO) {
         this.courseDAO = courseDAO;
     }
 
     @Override
-    public Integer addCourse(Course course) {
-        try
-        {
-            return courseDAO.addCourse(course);
-        }
-        catch(Exception e)
-        {
-            System.out.println(e.getMessage());
-        }
-        return null;
-        
-    }
-
-    @Override
-    public void deleteCourse(int courseId) {
-        try
-        {
-            courseDAO.deleteCourse(courseId);
-        }
-        catch(Exception e)
-        {
-            System.out.println(e.getMessage());
-        }
-        
-    }
-
-    @Override
-    public List<Course> getAllCourses() {
-        List<Course> li=new ArrayList<>();
-        try
-        {
+    public List<Course> getAllCourses() throws Exception {
+        try {
             return courseDAO.getAllCourses();
+        } catch (SQLException e) {
+            throw new Exception("Error fetching all courses", e);
         }
-        catch(Exception e)
-        {
-            System.out.println(e.getMessage());
-        }
-        return null;
-        
     }
 
     @Override
-    public Course getCourseById(int courseId) {
-        try
-        {
+    public Course getCourseById(int courseId) throws Exception {
+        try {
             return courseDAO.getCourseById(courseId);
+        } catch (Exception e) {
+            throw new Exception("Error fetching course with ID " + courseId, e);
         }
-        catch(Exception e)
-        {
-            System.out.println(e.getMessage());
-        }
-        return null;
-       
     }
 
     @Override
-    public void updateCourse(Course course) {
-        try
-        {
-            courseDAO.updateCourse(course);   
-        }
-        catch(Exception e)
-        {
-            System.out.println(e.getMessage());
+    public Integer addCourse(Course course) throws Exception {
+        try {
+            return courseDAO.addCourse(course);
+        } catch (SQLException e) {
+            throw new Exception("Error adding course: " + course.getCourseName(), e);
         }
     }
-    
 
+    @Override
+    public void updateCourse(Course course) throws Exception {
+        try {
+            courseDAO.updateCourse(course);
+        } catch (SQLException e) {
+            throw new Exception("Error updating course with ID " + course.getCourseId(), e);
+        }
+    }
+
+    @Override
+    public void deleteCourse(int courseId) throws Exception {
+        try {
+            courseDAO.deleteCourse(courseId);
+        } catch (SQLException e) {
+            throw new Exception("Error deleting course with ID " + courseId, e);
+        }
+    }
 }

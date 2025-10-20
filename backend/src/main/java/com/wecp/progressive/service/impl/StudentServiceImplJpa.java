@@ -1,82 +1,112 @@
 package com.wecp.progressive.service.impl;
 
-import java.util.Collections;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.wecp.progressive.dto.StudentDTO;
 import com.wecp.progressive.entity.Student;
+import com.wecp.progressive.entity.User;
 import com.wecp.progressive.exception.StudentAlreadyExistsException;
+import com.wecp.progressive.repository.AttendanceRepository;
+import com.wecp.progressive.repository.EnrollmentRepository;
 import com.wecp.progressive.repository.StudentRepository;
+import com.wecp.progressive.repository.UserRepository;
 import com.wecp.progressive.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.util.Comparator;
+import java.util.List;
 
 @Service
-public class StudentServiceImplJpa implements StudentService  {
+public class StudentServiceImplJpa implements StudentService {
+
+    private StudentRepository studentRepository;
 
     @Autowired
-    StudentRepository studentRepository;
-       
+    EnrollmentRepository enrollmentRepository;
+
+    @Autowired
+    AttendanceRepository attendanceRepository;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @Autowired
     public StudentServiceImplJpa(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
-    }
-
-    @Override
-    public Integer addStudent(Student student) throws Exception {
-        if(studentRepository.existsById(student.getStudentId()))
-        {
-            throw new StudentAlreadyExistsException("null");
-        }
-        Student s1=studentRepository.save(student);
-        return s1.getStudentId();
-    }
-
-    @Override
-    public List<Student> getAllStudentSortedByName() throws Exception {
-        List<Student> sortedOne=studentRepository.findAll();
-        Collections.sort(sortedOne);
-        return sortedOne;
-    }
-
-    public void updateStudent(Student student)throws Exception
-    {
-        Student sUp=studentRepository.findById(student.getStudentId()).orElse(null);
-        sUp.setFullName(student.getFullName());
-        sUp.setEmail(student.getEmail());
-        sUp.setContactNumber(student.getContactNumber());
-        sUp.setDateOfBirth(student.getDateOfBirth());
-        sUp.setAddress(student.getAddress());
-
-        studentRepository.save(sUp);
-    }
-    public void deleteStudent(int studentId)
-    {
-       // Student sDel=studentRepository.findById(studentId).orElseThrow(()-> new IllegalArgumentException("Student not found"));
-        Student st=studentRepository.findByStudentId(studentId);
-        studentRepository.delete(st);
-    }
-    public Student getStudentById(int studentId) throws Exception
-    {
-        return studentRepository.findById(studentId).orElse(null);
-    }
-    public void modifyStudentDetails(StudentDTO studentDTO)
-    {
-        Student upStudent=studentRepository.findById(studentDTO.getStudentId()).orElseThrow(()-> new IllegalArgumentException());
-
-        upStudent.setFullName(studentDTO.getFullName());
-        upStudent.setEmail(studentDTO.getEmail());
-        upStudent.setContactNumber(studentDTO.getContactNumber());
-        upStudent.setDateOfBirth(studentDTO.getDateOfBirth());
-        upStudent.setAddress(studentDTO.getAddress());
-        
-        studentRepository.save(upStudent);
     }
 
     @Override
     public List<Student> getAllStudents() throws Exception {
         return studentRepository.findAll();
     }
-    
-    
 
+    @Override
+    public Integer addStudent(Student student) throws Exception {
+        Student existingStudent = studentRepository.findByEmail(student.getEmail());
+        if (existingStudent != null) {
+            throw new StudentAlreadyExistsException("Student with this email already exists, Email: " + student.getEmail());
+        }
+        return studentRepository.save(student).getStudentId();
+    }
+
+    @Override
+    public List<Student> getAllStudentSortedByName() throws Exception {
+        List<Student> studentList = studentRepository.findAll();
+        studentList.sort(Comparator.comparing(Student::getFullName));
+        return studentList;
+    }
+
+    @Override
+    public void updateStudent(Student student) throws Exception {
+        Student existingStudent = studentRepository.findByEmail(student.getEmail());
+        if (existingStudent != null && existingStudent.getStudentId() != student.getStudentId()) {
+            throw new StudentAlreadyExistsException("Student with this email already exists, Email: " + student.getEmail());
+        }
+        studentRepository.save(student);
+    }
+
+    @Override
+    public void deleteStudent(int studentId) throws Exception {
+        userRepository.deleteByStudentId(studentId);
+        attendanceRepository.deleteByStudentId(studentId);
+        enrollmentRepository.deleteByStudentId(studentId);
+        studentRepository.deleteById(studentId);
+    }
+
+    @Override
+    public Student getStudentById(int studentId) throws Exception {
+        return studentRepository.findByStudentId(studentId);
+    }
+
+    @Override
+    public void modifyStudentDetails(StudentDTO studentDTO) throws Exception {
+        Student existingStudent = studentRepository.findByEmail(studentDTO.getEmail());
+        User studentUser = userRepository.findByStudentId(studentDTO.getStudentId());
+        
+        if (existingStudent != null && existingStudent.getStudentId() != studentDTO.getStudentId()) {
+            throw new StudentAlreadyExistsException("Student with email " + studentDTO.getEmail() + " already exists");
+        }
+        User user = userRepository.findByUsername(studentDTO.getUsername());
+        if (user != null && user.getStudent().getStudentId() != studentDTO.getStudentId()) {
+            throw new StudentAlreadyExistsException("User with username " + studentDTO.getEmail() + " already exists");
+        }
+        else {
+            studentUser.setUsername(studentDTO.getUsername());
+        }
+        if (!studentUser.getPassword().equals(studentDTO.getPassword())) {
+            studentUser.setPassword(passwordEncoder.encode(studentDTO.getPassword()));
+        }
+        userRepository.save(studentUser);
+        Student updateEntity = new Student();
+        updateEntity.setStudentId(studentDTO.getStudentId());
+        updateEntity.setFullName(studentDTO.getFullName());
+        updateEntity.setDateOfBirth(studentDTO.getDateOfBirth());
+        updateEntity.setEmail(studentDTO.getEmail());
+        updateEntity.setContactNumber(studentDTO.getContactNumber());
+        updateEntity.setAddress(studentDTO.getAddress());
+        studentRepository.save(updateEntity);
+    }
 }

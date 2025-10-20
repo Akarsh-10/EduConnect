@@ -1,5 +1,6 @@
 package com.wecp.progressive.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class LoginResponse {
@@ -9,27 +10,11 @@ public class LoginResponse {
    private Integer studentId;
    private Integer teacherId;
 
-   private Integer referenceId;
-
-   public LoginResponse(@JsonProperty("token") String token,
-   String roles, Integer userId, Integer teacherId )
-   {}
-
-   public LoginResponse(String token, String roles, Integer userId, Integer studentId, Integer teacherId,
-         Integer referenceId) {
+   @JsonCreator
+   public LoginResponse(@JsonProperty("token") String token , String roles, Integer userId, Integer studentId, Integer teacherId) {
       this.token = token;
-      this.roles = roles;
-      this.userId = userId;
-      this.studentId = studentId;
-      this.teacherId = teacherId;
-      this.referenceId = referenceId;
-   }
-   
-
-   public LoginResponse(String token, String roles, Integer userId, Integer studentId, Integer teacherId) {
-      this.token = token;
-      this.roles = roles;
-      this.userId = userId;
+      this.roles=roles;
+      this.userId=userId;
       this.studentId = studentId;
       this.teacherId = teacherId;
    }
@@ -73,14 +58,4 @@ public class LoginResponse {
    public void setTeacherId(Integer teacherId) {
       this.teacherId = teacherId;
    }
-
-   public Integer getReferenceId() {
-      return referenceId;
-   }
-
-   public void setReferenceId(Integer referenceId) {
-      this.referenceId = referenceId;
-   }
-
-   
 }

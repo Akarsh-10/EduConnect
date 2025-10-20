@@ -6,9 +6,6 @@ import com.wecp.progressive.dto.UserRegistrationDTO;
 import com.wecp.progressive.entity.User;
 import com.wecp.progressive.jwt.JwtUtil;
 import com.wecp.progressive.service.impl.UserLoginServiceImpl;
-
-import java.util.Collections;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +32,7 @@ public class UserLoginController {
     public ResponseEntity<?> registerUser(@RequestBody UserRegistrationDTO userRegistrationDTO) {
         try {
             userLoginService.registerUser(userRegistrationDTO);
-            return new ResponseEntity<>(Collections.singletonMap("message", "User registered successfully"),HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }

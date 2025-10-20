@@ -1,24 +1,26 @@
+import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { Teacher } from "../../models/Teacher";
 
 @Component({
-    selector:"teacher-sample",
-    templateUrl:"./teachersample.component.html",
-    styleUrls:["./teachersample.component.scss"],
-    standalone: true
+    selector: 'app-teachersample',
+    standalone: true,
+    templateUrl: './teachersample.component.html',
+    styleUrls: ['./teachersample.component.scss'],
+    imports: [CommonModule]
 })
-
 export class TeacherSampleComponent  {
-    teacher:Teacher;
+    teacher: Teacher = new Teacher(
+        1,
+        'Jane Smith',
+        '9876543210',
+        'jane@example.com',
+        'English',
+        15
+    );
 
-    constructor()
-    {
-        this.teacher=new Teacher(10,"Dough","98765432","werwer@try.com","English",20);
-    }
-
-    logTeacherAttributes() :void
-    {
-        console.log("teacher:",this.teacher);
+    logTeacherAttributes() {
+        this.teacher.logAttributes();
     }
   
 }

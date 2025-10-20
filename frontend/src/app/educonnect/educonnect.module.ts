@@ -36,7 +36,6 @@ import { CourseEditComponent } from "./components/courseedit/courseedit.componen
     SharedModule
   ],
   exports: [
-    
   ]
 })
 export class EduconnectModule {}

@@ -1,21 +1,16 @@
 package com.wecp.progressive.entity;
 
-import java.util.Date;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
-@Table(name= "student")
 public class Student implements Comparable<Student> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="student_Id")
-    private Integer studentId;
+    private int studentId;
     private String fullName;
     private Date dateOfBirth;
     private String contactNumber;
@@ -25,7 +20,7 @@ public class Student implements Comparable<Student> {
     public Student() {
     }
 
-    public Student(Integer studentId, String fullName, Date dateOfBirth, String contactNumber, String email, String address) {
+    public Student(int studentId, String fullName, Date dateOfBirth, String contactNumber, String email, String address) {
         this.studentId = studentId;
         this.fullName = fullName;
         this.dateOfBirth = dateOfBirth;
@@ -34,11 +29,11 @@ public class Student implements Comparable<Student> {
         this.address = address;
     }
 
-    public Integer getStudentId() {
+    public int getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(Integer studentId) {
+    public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
 
@@ -82,9 +77,8 @@ public class Student implements Comparable<Student> {
         this.address = address;
     }
 
-    public int compareTo(Student otherStudent)
-    {
+    @Override
+    public int compareTo(Student otherStudent) {
         return this.getFullName().compareTo(otherStudent.getFullName());
     }
-                
 }
