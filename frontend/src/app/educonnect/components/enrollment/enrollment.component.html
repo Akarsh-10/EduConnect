@@ -30,7 +30,7 @@
 
         <div class="form-group">
             <label for="enrollmentDate">Enrollment Date:</label>
-            <input type="date" id="enrollmentDate" formControlName="enrollmentDate" />
+            <input type="date" [attr.max]="maxDate" id="enrollmentDate" formControlName="enrollmentDate" />
             <div *ngIf="enrollmentForm.get('enrollmentDate')?.invalid && enrollmentForm.get('enrollmentDate')?.touched"
                 class="error">
                 Enrollment Date is required.

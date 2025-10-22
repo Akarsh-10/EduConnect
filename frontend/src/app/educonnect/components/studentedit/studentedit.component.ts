@@ -20,6 +20,8 @@ export class StudentEditComponent implements OnInit {
     userId: number;
     student: Student;
     user: User;
+    maxDate=new Date().toISOString().split('T')[0];
+
 
     constructor(
         private formBuilder: FormBuilder,
@@ -72,7 +74,7 @@ export class StudentEditComponent implements OnInit {
                 this.user = response;
                 this.studentForm.patchValue({
                     username: this.user.username,
-                    password: this.user.password
+                    password: ''
                 });
             },
             error: (error) => console.error('Error loading user details:', error)

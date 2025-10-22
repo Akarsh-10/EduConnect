@@ -13,6 +13,7 @@ export class RegistrationComponent {
     successMessage: string | null = null;
     errorMessage: string | null = null;
     selectedRole: string | null = null;
+    maxDate=new Date().toISOString().split('T')[0];
 
     constructor(private formBuilder: FormBuilder, private authService: AuthService) {}
 

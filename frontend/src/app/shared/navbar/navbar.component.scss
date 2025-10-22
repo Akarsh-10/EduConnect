@@ -51,7 +51,7 @@
 .app-name:hover {
     background-color: inherit;
     /* No hover background color */
-    color: inherit;
+    // color: inherit;
     /* No hover color change */
 }
 
@@ -66,19 +66,19 @@ app-logout {
     margin-left: auto;
 }
 
-/* Media Query: Responsive for small screens */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+// /* Media Query: Responsive for small screens */
+// @media (max-width: 768px) {
+//     .navbar {
+//         flex-direction: column;
+//         align-items: flex-start;
+//     }
 
-    .navbar-list {
-        flex-direction: column;
-        gap: 10px;
-    }
+//     .navbar-list {
+//         flex-direction: column;
+//         gap: 10px;
+//     }
 
-    app-logout {
-        margin-left: 0;
-    }
-}
+//     app-logout {
+//         margin-left: 0;
+//     }
+// }

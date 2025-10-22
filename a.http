@@ -1,0 +1,98 @@
+POST http://localhost:5000/user/register
+Content-Type: application/json
+
+{
+    "username": "teach1",
+    "password": "Teacher1",
+    "role": "TEACHER",
+    "fullName": "Teacher Sample B",
+    "contactNumber": "9087654321",
+    "email": "teacher1@gmail.com",
+    "subject": "Maths",
+    "yearsOfExperience": 0
+}
+###
+POST http://localhost:5000/user/register
+Content-Type: application/json
+
+{
+    "username": "student1",
+    "password": "Student1",
+    "role": "STUDENT",
+    "fullName": "Student Sample A",
+    "contactNumber": "9807654321",
+    "email": "student1@gmail.com",
+    "address": "25 Park Street, Kolkata, West Bengal, 700016",
+    "dateOfBirth": "2002-08-21"
+}
+###
+POST http://localhost:5000/user/login
+Content-Type: application/json
+
+{
+    "username": "teach1",
+    "password": "Teacher1"
+}
+
+###
+POST http://localhost:5000/course
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiVEVBQ0hFUiIsInVzZXJJZCI6MSwiaWF0IjoxNzYxMTA3NjA2LCJleHAiOjE3NjExOTQwMDZ9.QgFekG4thgVLSEWNY6x3xA7OQrlpGO_QjCRCEbJO5TFE02VFUIEuGhqZN93uCPodFZ72HF3zqoUgRPB9KOKW0Q
+Content-Type: application/json
+
+{
+    "courseName":"Differential",
+    "description":"Differentiation",
+    "teacher":{
+        "teacherId":1
+    }
+}
+
+###
+GET http://localhost:5000/course
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiVEVBQ0hFUiIsInVzZXJJZCI6MSwiaWF0IjoxNzYxMDUyMzExLCJleHAiOjE3NjExMzg3MTF9.knfytK8bCVRhiVRXn6eeu9w34MVtLLPeL-nuWfAkP1fYBIURBGn1HDFngZUXiXmd9877KiPIQ5UaDfwlUcdatw
+Content-Type: application/json
+
+###
+GET http://localhost:5000/course/1
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiVEVBQ0hFUiIsInVzZXJJZCI6MSwiaWF0IjoxNzYxMDUyMzExLCJleHAiOjE3NjExMzg3MTF9.knfytK8bCVRhiVRXn6eeu9w34MVtLLPeL-nuWfAkP1fYBIURBGn1HDFngZUXiXmd9877KiPIQ5UaDfwlUcdatw
+Content-Type: application/json
+
+###
+GET http://localhost:5000/course/teacher/1
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiVEVBQ0hFUiIsInVzZXJJZCI6MSwiaWF0IjoxNzYxMDUyMzExLCJleHAiOjE3NjExMzg3MTF9.knfytK8bCVRhiVRXn6eeu9w34MVtLLPeL-nuWfAkP1fYBIURBGn1HDFngZUXiXmd9877KiPIQ5UaDfwlUcdatw
+Content-Type: application/json
+
+###
+GET http://localhost:5000/student
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiVEVBQ0hFUiIsInVzZXJJZCI6MSwiaWF0IjoxNzYxMDUyMzExLCJleHAiOjE3NjExMzg3MTF9.knfytK8bCVRhiVRXn6eeu9w34MVtLLPeL-nuWfAkP1fYBIURBGn1HDFngZUXiXmd9877KiPIQ5UaDfwlUcdatw
+Content-Type: application/json
+
+###
+GET http://localhost:5000/student/1
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiVEVBQ0hFUiIsInVzZXJJZCI6MSwiaWF0IjoxNzYxMDUyMzExLCJleHAiOjE3NjExMzg3MTF9.knfytK8bCVRhiVRXn6eeu9w34MVtLLPeL-nuWfAkP1fYBIURBGn1HDFngZUXiXmd9877KiPIQ5UaDfwlUcdatw
+Content-Type: application/json
+
+###
+GET http://localhost:5000/teacher
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiVEVBQ0hFUiIsInVzZXJJZCI6MSwiaWF0IjoxNzYxMDUyMzExLCJleHAiOjE3NjExMzg3MTF9.knfytK8bCVRhiVRXn6eeu9w34MVtLLPeL-nuWfAkP1fYBIURBGn1HDFngZUXiXmd9877KiPIQ5UaDfwlUcdatw
+Content-Type: application/json
+
+###
+GET http://localhost:5000/teacher/1
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiVEVBQ0hFUiIsInVzZXJJZCI6MSwiaWF0IjoxNzYxMDUyMzExLCJleHAiOjE3NjExMzg3MTF9.knfytK8bCVRhiVRXn6eeu9w34MVtLLPeL-nuWfAkP1fYBIURBGn1HDFngZUXiXmd9877KiPIQ5UaDfwlUcdatw
+Content-Type: application/json
+
+###
+GET http://localhost:5000/teacher/yearsofexperience
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiVEVBQ0hFUiIsInVzZXJJZCI6MSwiaWF0IjoxNzYxMDUyMzExLCJleHAiOjE3NjExMzg3MTF9.knfytK8bCVRhiVRXn6eeu9w34MVtLLPeL-nuWfAkP1fYBIURBGn1HDFngZUXiXmd9877KiPIQ5UaDfwlUcdatw
+Content-Type: application/json
+
+###
+GET http://localhost:5000/enrollment
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiVEVBQ0hFUiIsInVzZXJJZCI6MSwiaWF0IjoxNzYxMDUyMzExLCJleHAiOjE3NjExMzg3MTF9.knfytK8bCVRhiVRXn6eeu9w34MVtLLPeL-nuWfAkP1fYBIURBGn1HDFngZUXiXmd9877KiPIQ5UaDfwlUcdatw
+Content-Type: application/json
+
+###
+GET http://localhost:5000/attendance
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiVEVBQ0hFUiIsInVzZXJJZCI6MSwiaWF0IjoxNzYxMDUyMzExLCJleHAiOjE3NjExMzg3MTF9.knfytK8bCVRhiVRXn6eeu9w34MVtLLPeL-nuWfAkP1fYBIURBGn1HDFngZUXiXmd9877KiPIQ5UaDfwlUcdatw
+Content-Type: application/json

@@ -1,6 +1,9 @@
 package com.wecp.progressive.entity;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -24,12 +27,13 @@ public class Enrollment {
     private Course course;
 
     @Column(name = "enrollment_date", nullable = false)
-    private Date enrollmentDate;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate enrollmentDate;
 
     
     public Enrollment() {}
 
-    public Enrollment(Student student, Course course, Date enrollmentDate) {
+    public Enrollment(Student student, Course course, LocalDate enrollmentDate) {
         this.student = student;
         this.course = course;
         this.enrollmentDate = enrollmentDate;
@@ -59,11 +63,11 @@ public class Enrollment {
         this.course = course;
     }
 
-    public Date getEnrollmentDate() {
+    public LocalDate getEnrollmentDate() {
         return enrollmentDate;
     }
 
-    public void setEnrollmentDate(Date enrollmentDate) {
+    public void setEnrollmentDate(LocalDate enrollmentDate) {
         this.enrollmentDate = enrollmentDate;
     }
 }

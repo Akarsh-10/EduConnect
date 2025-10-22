@@ -66,7 +66,7 @@ export class TeacherEditComponent implements OnInit {
                 this.user = response;
                 this.teacherForm.patchValue({
                     username: this.user.username,
-                    password: this.user.password
+                    password: ''
                 });
             },
             error: (error) => console.error('Error loading user details:', error)

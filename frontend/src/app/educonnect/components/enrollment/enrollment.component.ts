@@ -15,6 +15,7 @@ export class EnrollmentComponent implements OnInit {
   enrollmentForm: FormGroup;
   successMessage: string | null = null;
   errorMessage: string | null = null;
+  maxDate=new Date().toISOString().split('T')[0];
 
   courses: Course[] = [];
   students: Student[] = [];
@@ -90,7 +91,7 @@ export class EnrollmentComponent implements OnInit {
           this.enrollmentForm.reset();
           if (this.role === 'STUDENT') {
             
-            this.enrollmentForm.patchValue({ student: this.student });
+            this.enrollmentForm.patchValue({ student: this.student.fullName });
             this.enrollmentForm.get('student')?.disable();
           }
         },

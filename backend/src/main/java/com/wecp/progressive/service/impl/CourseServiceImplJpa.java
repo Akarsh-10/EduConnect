@@ -1,11 +1,13 @@
 package com.wecp.progressive.service.impl;
 
 import com.wecp.progressive.entity.Course;
+import com.wecp.progressive.entity.Teacher;
 import com.wecp.progressive.exception.CourseAlreadyExistsException;
 import com.wecp.progressive.exception.CourseNotFoundException;
 import com.wecp.progressive.repository.AttendanceRepository;
 import com.wecp.progressive.repository.CourseRepository;
 import com.wecp.progressive.repository.EnrollmentRepository;
+import com.wecp.progressive.repository.TeacherRepository;
 import com.wecp.progressive.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,8 @@ public class CourseServiceImplJpa implements CourseService {
     AttendanceRepository attendanceRepository;
 
     @Autowired
+    TeacherRepository teacherRepository;
+
     public CourseServiceImplJpa(CourseRepository courseRepository) {
         this.courseRepository = courseRepository;
     }
@@ -45,6 +49,13 @@ public class CourseServiceImplJpa implements CourseService {
         if (existingCourse != null) {
             throw new CourseAlreadyExistsException("Course with this name already exists, Course Name: " + course.getCourseName());
         }
+
+        if(course.getTeacher()!=null && course.getTeacher().getTeacherId()!=0)
+        {
+            Teacher teacher= teacherRepository.findById((course.getTeacher().getTeacherId())).orElseThrow(()-> new RuntimeException("Teacher does not exist"));
+            course.setTeacher(teacher);
+        }
+
         return courseRepository.save(course).getCourseId();
     }
 

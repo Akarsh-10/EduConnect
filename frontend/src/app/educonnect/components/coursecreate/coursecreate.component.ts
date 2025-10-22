@@ -45,7 +45,11 @@ export class CourseCreateComponent implements OnInit {
         next: (response) => {
           this.errorMessage = null;
           console.log(response);
-          this.courseForm.reset();
+          this.courseForm.markAsUntouched();
+          this.courseForm.patchValue({
+            courseId:'',courseName:'', description:'', teacher: this.teacher.fullName
+          })
+          
           this.successMessage = 'Course created successfully!';
         },
         error: (error) => {

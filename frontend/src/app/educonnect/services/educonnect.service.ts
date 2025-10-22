@@ -114,8 +114,6 @@ export class EduConnectService {
     return this.http.get<Enrollment[]>(`${this.baseUrl}/enrollment/student/${studentId}`);
   }
 
-  
-
   getUserById(userId: number): Observable<User> {
     return this.http.get<User>(`${this.baseUrl}/user/${userId}`);
   }

@@ -23,7 +23,7 @@
           <div class="form-group">
             <label for="password">Password:</label>
             <input type="password" id="password" formControlName="password" />
-            <div *ngIf="studentForm.get('password')?.invalid && studentForm.get('password')?.touched" class="error">
+            <div *ngIf="studentForm.get('password')?.invalid" class="error">
               <small *ngIf="studentForm.get('password')?.hasError('required')">Password is required.</small>
               <small *ngIf="studentForm.get('password')?.hasError('minlength')">Password must be at least 8
                 characters long.</small>
@@ -34,7 +34,7 @@
 
         <div class="form-group">
             <label for="dateOfBirth">Date of Birth:</label>
-            <input type="date" id="dateOfBirth" formControlName="dateOfBirth" />
+            <input type="date" [attr.max]="maxDate" id="dateOfBirth" formControlName="dateOfBirth" />
             <div class="error"
                 *ngIf="studentForm.get('dateOfBirth')?.invalid && studentForm.get('dateOfBirth')?.touched">
                 Date of Birth is required.

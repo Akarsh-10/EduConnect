@@ -62,6 +62,17 @@ export class DashboardComponent implements OnInit {
             error: (error) => console.log('Error loading courses', error)
         });
 
+        this.educonnectService.getEnrollmentsByStudent(this.studentId).subscribe({
+            next: (response) => {
+                this.enrollments = response;
+                if (this.courses.length > 0) {
+                    this.selectedCourseId = this.courses[0].courseId;
+                    this.loadEnrollments(this.selectedCourseId);
+                }
+            },
+            error: (error) => console.log('Error loading enrollments for logged in student.', error)
+        });
+
         this.educonnectService.getAllStudents().subscribe({
             next: (response) => {
                 this.students = response;
@@ -125,6 +136,20 @@ export class DashboardComponent implements OnInit {
             })
         }
     }
+    deleteStudentById(sid: number): void {
+        if (confirm('Are you sure you want to delete this student profile?')) {
+            this.educonnectService.deleteStudent(sid).subscribe({
+                next: () => {
+                    // this.router.navigate(['/']);
+                    window.location.reload();
+                    
+                },
+                error: (error) => console.error('Error deleting student:', error)
+
+            })
+        }
+    }
+
 
     navigateToEditTeacher(): void {
         this.router.navigate(['educonnect/teacher/edit', this.teacherDetails.teacherId]);
@@ -151,7 +176,9 @@ export class DashboardComponent implements OnInit {
             this.educonnectService.deleteCourse(courseId).subscribe({
                 next: () => {
                     // this.router.navigate(['/']);
-                    window.location.reload();
+                    //window.location.reload();
+                    this.loadTeacherData();
+                    this.loadStudentData();
                     
                 },
                 error: (error) => console.error('Error deleting course:', error)

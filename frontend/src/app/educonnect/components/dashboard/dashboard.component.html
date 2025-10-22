@@ -79,6 +79,7 @@
                         <th>Student Name</th>
                         <th>Date of Birth</th>
                         <th>Contact Number</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -87,6 +88,9 @@
                         <td>{{ student.fullName }}</td>
                         <td>{{ student.dateOfBirth | date }}</td>
                         <td>{{ student.contactNumber }}</td>
+                        <td>
+                            <button (click)="deleteStudentById(student.studentId)" class="btn-delete">Delete</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>

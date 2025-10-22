@@ -83,7 +83,7 @@
         <div *ngIf="selectedRole === 'STUDENT'">
             <div>
                 <label for="dateOfBirth">Date of Birth:</label>
-                <input type="date" id="dateOfBirth" formControlName="dateOfBirth" />
+                <input type="date" [attr.max]="maxDate" id="dateOfBirth" formControlName="dateOfBirth" />
             </div>
             <div>
                 <label for="address">Address:</label>
